@@ -42,9 +42,9 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    UIRefreshControl *reloadControl = [[UIRefreshControl alloc] init];
-    [reloadControl addTarget:self action:@selector(reload) forControlEvents:UIControlEventValueChanged];
-    [self.tableView addSubview:reloadControl];
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
     
     // [self.tableView registerClass:[MovieListViewCell class] forCellReuseIdentifier:@"MovieListViewCell"];
     UINib *movieListViewNib = [UINib nibWithNibName:@"MovieListViewCell" bundle:nil];
@@ -55,6 +55,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)refresh:(UIRefreshControl *)refreshControl {
+    [refreshControl endRefreshing];
 }
 
 #pragma mark - Private methods
